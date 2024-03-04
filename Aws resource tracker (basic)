@@ -1,0 +1,26 @@
+#!/bin/bash
+
+######################################################################
+# Author : Ahana
+# Date : 4th march
+# version : v1
+#
+# This script will report aws resouce usage of ec2, s3, lambda, iam
+#
+#######################################################################
+set -x
+
+#List s3 buckets
+echo "print list of s3 buckets"
+aws s3 ls
+
+#List ec2 instances
+echo "print list of ec2 instances"
+aws ec2 describe-instances | jq '.Reservations[].Instances[].InstanceId'
+#List lambda
+echo "print list of lambda functions"
+aws lambda list-functions
+
+#List iam user
+echo "print list of iam users"
+aws iam list-users
